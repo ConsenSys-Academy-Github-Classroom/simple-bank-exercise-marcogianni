@@ -83,7 +83,6 @@ contract SimpleBank {
         require(enrolled[msg.sender] == true, "Not enrolled!");
         require(msg.value > 0, "Not valid amount");
         balances[msg.sender] += msg.value;
-        // TODO ADD TRANSFER
         emit LogDepositMade(msg.sender, msg.value);
         return balances[msg.sender];
     }
@@ -105,7 +104,6 @@ contract SimpleBank {
         require(withdrawAmount <= balances[msg.sender], "Insufficient amount");
         balances[msg.sender] -= withdrawAmount;
         msg.sender.transfer(withdrawAmount);
-        // require(success, "Tranfer failed");
         emit LogWithdrawal(msg.sender, withdrawAmount, balances[msg.sender]);
         return balances[msg.sender];
     }
